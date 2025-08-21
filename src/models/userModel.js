@@ -20,3 +20,21 @@ export const findUserByUsername = async (username) => {
 
   return rows[0];
 };
+
+export const findUserById = async (id) => {
+  const query = `
+  SELECT 
+    users.id, 
+    CONCAT(users.first_name, ' ', users.last_name) AS name,
+    users.username,
+    users.password,
+    roles.name AS role
+  FROM users
+  JOIN roles ON users.role_id = roles.id
+  WHERE users.id = $1;
+  `;
+
+  const { rows } = await pool.query(query, [id]);
+
+  return rows[0];
+};

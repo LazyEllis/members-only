@@ -1,11 +1,28 @@
 import { Router } from "express";
-import { signUp, renderSignUpForm } from "../controllers/indexController.js";
-import { validateSignUp } from "../lib/validators.js";
+import passport from "passport";
+import {
+  signUp,
+  renderSignInForm,
+  renderSignUpForm,
+} from "../controllers/indexController.js";
+import { validateSignIn, validateSignUp } from "../lib/validators.js";
 
 const indexRouter = Router();
 
 indexRouter.get("/sign-up", renderSignUpForm);
 
 indexRouter.post("/sign-up", validateSignUp, signUp);
+
+indexRouter.get("/sign-in", renderSignInForm);
+
+indexRouter.post(
+  "/sign-in",
+  validateSignIn,
+  passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/sign-in",
+    failureMessage: true,
+  }),
+);
 
 export default indexRouter;

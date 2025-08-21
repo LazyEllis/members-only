@@ -3,7 +3,7 @@ import { createUser } from "../models/userModel.js";
 import { findRoleByName } from "../models/roleModel.js";
 
 export const renderSignUpForm = (req, res) => {
-  res.render("auth-form");
+  res.render("auth-form", { mode: "sign-up" });
 };
 
 export const signUp = async (req, res) => {
@@ -19,4 +19,16 @@ export const signUp = async (req, res) => {
     role,
   });
   res.redirect("/");
+};
+
+export const renderSignInForm = (req, res) => {
+  const { messages } = req.session;
+
+  const errors = messages ? [{ msg: messages[0] }] : undefined;
+
+  if (messages) {
+    req.session.messages = undefined;
+  }
+
+  res.render("auth-form", { mode: "sign-in", errors });
 };

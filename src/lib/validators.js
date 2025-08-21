@@ -65,4 +65,14 @@ export const validateSignUp = validate(
       .withMessage("The passwords must match."),
   ],
   "auth-form",
+  { mode: "sign-up" },
+);
+
+export const validateSignIn = validate(
+  [
+    body("username", "You must enter your username.").notEmpty(),
+    body("password", "You must enter your password.").notEmpty(),
+  ],
+  "auth-form",
+  { mode: "sign-in" },
 );
