@@ -3,6 +3,7 @@ import express from "express";
 import session from "express-session";
 import passport from "passport";
 import "dotenv/config";
+import indexRouter from "./routes/indexRouter.js";
 
 const app = express();
 
@@ -21,6 +22,8 @@ app.use(
 app.use(passport.session());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(assetsPath));
+
+app.use("/", indexRouter);
 
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {

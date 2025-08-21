@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign up | The Secret Club</title>
+  </head>
+  <body>
+    <h1>Sign up</h1>
+    <div class="form-container">
+      <% if (locals.errors) { %>
+        <div class="alert">
+          <h2>There <%= errors.length > 1 ? `were ${errors.length} errors` : "was an error" %> with your submission</h2>
+          <ul class="error-list">
+            <% errors.forEach(error => { %>
+              <li><%= error.msg %></li>
+            <% }); %>
+          </ul>
+        </div>
+      <% } %>
+
+      <form action="/sign-up" method="post">
+        <div>
+          <label for="first-name">First Name</label>
+          <input type="text" name="firstName" id="first-name" value="<%= locals.data?.firstName %>" />
+        </div>
+
+        <div>
+          <label for="last-name">Last Name</label>
+          <input type="text" name="lastName" id="last-name" value="<%= locals.data?.lastName %>" />
+        </div>
+
+        <div>
+          <label for="username">Username</label>
+          <input type="text" name="username" id="username" value="<%= locals.data?.username %>" />
+        </div>
+
+        <div>
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password" />
+        </div>
+
+        <div>
+          <label for="confirm-password">Confirm Password</label>
+          <input type="password" name="confirmPassword" id="confirm-password" />
+        </div>
+
+        <div>
+          <button>Sign up</button>
+        </div>
+      </form>
+
+      <p>Already have an account? <a href="/sign-in">Sign in</a></p>
+    </div>
+  </body>
+</html>
