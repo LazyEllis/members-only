@@ -1,6 +1,7 @@
 import { Router } from "express";
 import passport from "passport";
 import {
+  signOut,
   signUp,
   renderSignInForm,
   renderSignUpForm,
@@ -24,5 +25,7 @@ indexRouter.post(
     failureMessage: true,
   }),
 );
+
+indexRouter.get("/sign-out", signOut);
 
 export default indexRouter;
