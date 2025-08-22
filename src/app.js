@@ -2,13 +2,19 @@ import path from "path";
 import express from "express";
 import session from "express-session";
 import passport from "passport";
+import connectPgSimple from "connect-pg-simple";
 import "dotenv/config";
 import "./config/passport.js";
+import pool from "./config/pool.js";
 import indexRouter from "./routes/indexRouter.js";
+
+const PGStore = connectPgSimple(session);
+const ONE_DAY = 1000 * 60 * 60 * 24; // A second is 1000 milliseconds
 
 const app = express();
 
 const assetsPath = path.join(import.meta.dirname, "public");
+const sessionStore = new PGStore({ pool });
 
 app.set("views", path.join(import.meta.dirname, "views"));
 app.set("view engine", "ejs");
@@ -18,6 +24,10 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
+    store: sessionStore,
+    cookie: {
+      maxAge: ONE_DAY,
+    },
   }),
 );
 app.use(passport.session());
