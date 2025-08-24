@@ -7,17 +7,19 @@ import {
   renderSignUpForm,
 } from "../controllers/indexController.js";
 import { validateSignIn, validateSignUp } from "../lib/validators.js";
+import { requireAuth, requireGuest } from "../lib/auth.js";
 
 const indexRouter = Router();
 
-indexRouter.get("/sign-up", renderSignUpForm);
+indexRouter.get("/sign-up", requireGuest, renderSignUpForm);
 
-indexRouter.post("/sign-up", validateSignUp, signUp);
+indexRouter.post("/sign-up", requireGuest, validateSignUp, signUp);
 
-indexRouter.get("/sign-in", renderSignInForm);
+indexRouter.get("/sign-in", requireGuest, renderSignInForm);
 
 indexRouter.post(
   "/sign-in",
+  requireGuest,
   validateSignIn,
   passport.authenticate("local", {
     successRedirect: "/",
@@ -26,6 +28,6 @@ indexRouter.post(
   }),
 );
 
-indexRouter.get("/sign-out", signOut);
+indexRouter.get("/sign-out", requireAuth, signOut);
 
 export default indexRouter;
