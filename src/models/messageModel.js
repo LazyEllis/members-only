@@ -6,3 +6,7 @@ export const createMessage = async ({ title, content, user }) => {
     [title, content, user],
   );
 };
+
+export const removeMessage = async (id) => {
+  await pool.query("DELETE FROM messages WHERE id = $1", [id]);
+};
