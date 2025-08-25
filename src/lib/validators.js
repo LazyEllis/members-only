@@ -76,3 +76,11 @@ export const validateSignIn = validate(
   "auth-form",
   { mode: "sign-in" },
 );
+
+export const validateMessage = validate(
+  [
+    textValidator("title", { isMessage: true }),
+    textValidator("content", { isMessage: true }),
+  ],
+  "message-form",
+);
