@@ -7,6 +7,7 @@ import "dotenv/config";
 import "./config/passport.js";
 import pool from "./config/pool.js";
 import indexRouter from "./routes/indexRouter.js";
+import messageRouter from "./routes/messageRouter.js";
 
 const PGStore = connectPgSimple(session);
 const ONE_DAY = 1000 * 60 * 60 * 24; // A second is 1000 milliseconds
@@ -39,6 +40,7 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use("/messages", messageRouter);
 app.use("/", indexRouter);
 
 // eslint-disable-next-line no-unused-vars

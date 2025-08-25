@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Members Only | Send Message</title>
+  </head>
+  <body>
+    <h1>Send Message</h1>
+
+    <div class="form-container">
+      <% if (locals.errors) { %>
+        <div class="alert">
+          <h2>There <%= errors.length > 1 ? `were ${errors.length} errors` : "was an error" %> with your submission</h2>
+          <ul class="error-list">
+            <% errors.forEach(error => { %>
+              <li><%= error.msg %></li>
+            <% }); %>
+          </ul>
+        </div>
+      <% } %>
+
+      <form action="/messages/send" method="post">
+        <div>
+          <label for="title">Title</label>
+          <input type="text" name="title" id="title" value="<%= locals.data?.title %>" />
+        </div>
+
+        <div>
+          <label for="content">Content</label>
+          <textarea name="content" id="content"><%= locals.data?.content %></textarea>
+        </div>
+
+        <div>
+          <button type="submit">Send Message</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
