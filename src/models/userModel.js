@@ -38,3 +38,7 @@ export const findUserById = async (id) => {
 
   return rows[0];
 };
+
+export const updateUserRole = async (id, { role }) => {
+  await pool.query("UPDATE users SET role_id = $1 WHERE id = $2", [role, id]);
+};

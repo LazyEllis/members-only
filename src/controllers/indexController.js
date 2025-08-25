@@ -1,5 +1,5 @@
 import bcrypt from "bcryptjs";
-import { createUser } from "../models/userModel.js";
+import { createUser, updateUserRole } from "../models/userModel.js";
 import { findRoleByName } from "../models/roleModel.js";
 
 export const renderSignUpForm = (req, res) => {
@@ -41,4 +41,26 @@ export const signOut = (req, res, next) => {
 
     res.redirect("/");
   });
+};
+
+export const renderRoleUpgradeForm = (req, res) => {
+  res.render("role-upgrade-form");
+};
+
+export const upgradeRole = async (req, res) => {
+  const { passcode } = req.body;
+  const { id, role } = req.user;
+  const { CLUB_PASSCODE, ADMIN_PASSCODE } = process.env;
+
+  const isMember = role === "MEMBER";
+  const rolePasscode = isMember ? ADMIN_PASSCODE : CLUB_PASSCODE;
+
+  if (passcode !== rolePasscode) {
+    return res.status(403).render("role-upgrade-form", { error: true });
+  }
+
+  const newRole = await findRoleByName(isMember ? "ADMIN" : "MEMBER");
+
+  await updateUserRole(id, { role: newRole });
+  res.redirect("/");
 };

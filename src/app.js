@@ -34,6 +34,11 @@ app.use(passport.session());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(assetsPath));
 
+app.use((req, res, next) => {
+  res.locals.user = req.user;
+  next();
+});
+
 app.use("/", indexRouter);
 
 // eslint-disable-next-line no-unused-vars

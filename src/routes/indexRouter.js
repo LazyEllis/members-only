@@ -5,9 +5,11 @@ import {
   signUp,
   renderSignInForm,
   renderSignUpForm,
+  upgradeRole,
+  renderRoleUpgradeForm,
 } from "../controllers/indexController.js";
 import { validateSignIn, validateSignUp } from "../lib/validators.js";
-import { requireAuth, requireGuest } from "../lib/auth.js";
+import { requireAuth, requireGuest, requireNonAdmin } from "../lib/auth.js";
 
 const indexRouter = Router();
 
@@ -29,5 +31,9 @@ indexRouter.post(
 );
 
 indexRouter.get("/sign-out", requireAuth, signOut);
+
+indexRouter.get("/upgrade-role", requireNonAdmin, renderRoleUpgradeForm);
+
+indexRouter.post("/upgrade-role", requireNonAdmin, upgradeRole);
 
 export default indexRouter;
