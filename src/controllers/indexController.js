@@ -12,19 +12,26 @@ export const renderSignUpForm = (req, res) => {
   res.render("auth-form", { mode: "sign-up" });
 };
 
-export const signUp = async (req, res) => {
+export const signUp = async (req, res, next) => {
   const { firstName, lastName, username, password } = req.body;
   const hashedPassword = await bcrypt.hash(password, 10);
   const role = await findRoleByName("USER");
 
-  await createUser({
+  const user = await createUser({
     firstName,
     lastName,
     username,
     password: hashedPassword,
     role,
   });
-  res.redirect("/");
+
+  req.login(user, (error) => {
+    if (error) {
+      return next(error);
+    }
+
+    res.redirect("/");
+  });
 };
 
 export const renderSignInForm = (req, res) => {

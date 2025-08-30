@@ -7,10 +7,12 @@ export const createUser = async ({
   password,
   role,
 }) => {
-  await pool.query(
-    "INSERT INTO users (first_name, last_name, username, password, role_id) VALUES ($1, $2, $3, $4, $5)",
+  const { rows } = await pool.query(
+    "INSERT INTO users (first_name, last_name, username, password, role_id) VALUES ($1, $2, $3, $4, $5) RETURNING id",
     [firstName, lastName, username, password, role],
   );
+
+  return rows[0];
 };
 
 export const findUserByUsername = async (username) => {
