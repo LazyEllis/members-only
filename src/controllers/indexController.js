@@ -1,6 +1,12 @@
 import bcrypt from "bcryptjs";
+import { findMessages } from "../models/messageModel.js";
 import { createUser, updateUserRole } from "../models/userModel.js";
 import { findRoleByName } from "../models/roleModel.js";
+
+export const renderHomePage = async (req, res) => {
+  const messages = await findMessages();
+  res.render("index", { messages });
+};
 
 export const renderSignUpForm = (req, res) => {
   res.render("auth-form", { mode: "sign-up" });

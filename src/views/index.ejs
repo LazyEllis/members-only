@@ -1,0 +1,44 @@
+<% 
+  const isAuth = Boolean(user);
+  const isMember = isAuth && user?.role !== "USER";
+  const isAdmin = user?.role === "ADMIN"
+%>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Members Only | Home</title>
+  </head>
+  <body>
+    <% if (messages.length === 0) { %>
+      <div class="empty-feed">
+        <h2>No messages</h2>
+        <p>Start the discussion with a new message</p>
+        <div>
+          <a href="/messages/send">Send Message</a>
+        </div>
+      </div>
+    <% } else { %>
+      <% if (isAuth) { %>
+        <a href="/messages/send">Send Message</a>
+      <% } %>
+      <div class="feed">
+        <% messages.forEach(message => { %>
+          <div class="message">
+            <div><%= isMember || user?.id === message.user_id ? message.author : '*****' %></div>
+            <div>@<%= isMember || user?.id === message.user_id ? message.username : '*****' %></div>
+            <div><%= message.title %></div>
+            <div><%= message.content %></div>
+            <% if (isAdmin) { %>
+              <form action="/messages/<%= message.id %>/delete" method="post">
+                <button type="submit">Delete</button>
+              </form>
+            <% } %>
+          </div>
+        <% }); %>
+      </div>
+    <% } %>
+  </body>
+</html>

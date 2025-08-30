@@ -7,11 +7,14 @@ import {
   renderSignUpForm,
   upgradeRole,
   renderRoleUpgradeForm,
+  renderHomePage,
 } from "../controllers/indexController.js";
 import { validateSignIn, validateSignUp } from "../lib/validators.js";
 import { requireAuth, requireGuest, requireNonAdmin } from "../lib/auth.js";
 
 const indexRouter = Router();
+
+indexRouter.get("/", renderHomePage);
 
 indexRouter.get("/sign-up", requireGuest, renderSignUpForm);
 
