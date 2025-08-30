@@ -8,6 +8,7 @@ import {
   upgradeRole,
   renderRoleUpgradeForm,
   renderHomePage,
+  render404Page,
 } from "../controllers/indexController.js";
 import { validateSignIn, validateSignUp } from "../lib/validators.js";
 import { requireAuth, requireGuest, requireNonAdmin } from "../lib/auth.js";
@@ -38,5 +39,7 @@ indexRouter.get("/sign-out", requireAuth, signOut);
 indexRouter.get("/upgrade-role", requireNonAdmin, renderRoleUpgradeForm);
 
 indexRouter.post("/upgrade-role", requireNonAdmin, upgradeRole);
+
+indexRouter.get("/*splat", render404Page);
 
 export default indexRouter;
