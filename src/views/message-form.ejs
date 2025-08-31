@@ -11,16 +11,7 @@
       <h1>Send Message</h1>
       
       <div class="form-container">
-        <% if (locals.errors) { %>
-          <div class="alert">
-            <h2>There <%= errors.length > 1 ? `were ${errors.length} errors` : "was an error" %> with your submission</h2>
-            <ul class="error-list">
-              <% errors.forEach(error => { %>
-                <li><%= error.msg %></li>
-              <% }); %>
-            </ul>
-          </div>
-        <% } %>
+        <%- include("partials/errors.ejs") %>
 
         <form action="/messages/send" method="post">
           <div>

@@ -1,0 +1,17 @@
+<% if (locals.errors) { %>
+  <div class="alert">
+    <h2>There <%= errors.length > 1 ? `were ${errors.length} errors` : "was an error" %> with your submission</h2>
+    <ul class="error-list">
+      <% errors.forEach(error => { %>
+        <li><%= error.msg %></li>
+      <% }); %>
+    </ul>
+  </div>
+<% } else if (locals.error) { %>
+  <div class="alert">
+    <h2>There was an error with your submission</h2>
+    <ul class="error-list">
+      <li>The passcode is invalid</li>
+    </ul>
+  </div>
+<% } %>

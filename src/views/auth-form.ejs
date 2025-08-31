@@ -15,16 +15,7 @@
       <h1><%= action %></h1>
 
       <div class="form-container">
-        <% if (locals.errors) { %>
-          <div class="alert">
-            <h2>There <%= errors.length > 1 ? `were ${errors.length} errors` : "was an error" %> with your submission</h2>
-            <ul class="error-list">
-              <% errors.forEach(error => { %>
-                <li><%= error.msg %></li>
-              <% }); %>
-            </ul>
-          </div>
-        <% } %>
+        <%- include("partials/errors") %>
 
         <form action="/<%= mode %>" method="post">
           <% if (mode === "sign-up") { %>
