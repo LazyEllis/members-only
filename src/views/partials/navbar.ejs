@@ -1,0 +1,15 @@
+<header>
+  <nav>
+    <a href="/" class="brand">Members Only</a>
+    <ul>
+      <% if (user) { %>
+        <li><a href="/messages/send">Send Message</a></li>
+        <li><span><%= user.name %></span></li>
+        <li><a href="/sign-out">Sign out</a></li>
+      <% } else { %>
+        <li><a href="/sign-in">Sign in</a></li>
+        <li><a href="/sign-up">Sign up</a></li>
+      <% } %>
+    </ul>
+  </nav>
+</header>

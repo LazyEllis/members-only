@@ -10,58 +10,62 @@
     <title>Members Only | <%= action %></title>
   </head>
   <body>
-    <h1><%= action %></h1>
-    <div class="form-container">
-      <% if (locals.errors) { %>
-        <div class="alert">
-          <h2>There <%= errors.length > 1 ? `were ${errors.length} errors` : "was an error" %> with your submission</h2>
-          <ul class="error-list">
-            <% errors.forEach(error => { %>
-              <li><%= error.msg %></li>
-            <% }); %>
-          </ul>
-        </div>
-      <% } %>
+    <%- include("partials/navbar") %>
+    <main>
+      <h1><%= action %></h1>
 
-      <form action="/<%= mode %>" method="post">
-        <% if (mode === "sign-up") { %>
-          <div>
-            <label for="first-name">First Name</label>
-            <input type="text" name="firstName" id="first-name" value="<%= locals.data?.firstName %>" />
-          </div>
-
-          <div>
-            <label for="last-name">Last Name</label>
-            <input type="text" name="lastName" id="last-name" value="<%= locals.data?.lastName %>" />
+      <div class="form-container">
+        <% if (locals.errors) { %>
+          <div class="alert">
+            <h2>There <%= errors.length > 1 ? `were ${errors.length} errors` : "was an error" %> with your submission</h2>
+            <ul class="error-list">
+              <% errors.forEach(error => { %>
+                <li><%= error.msg %></li>
+              <% }); %>
+            </ul>
           </div>
         <% } %>
 
-        <div>
-          <label for="username">Username</label>
-          <input type="text" name="username" id="username" value="<%= locals.data?.username %>" />
-        </div>
+        <form action="/<%= mode %>" method="post">
+          <% if (mode === "sign-up") { %>
+            <div>
+              <label for="first-name">First Name</label>
+              <input type="text" name="firstName" id="first-name" value="<%= locals.data?.firstName %>" />
+            </div>
 
-        <div>
-          <label for="password">Password</label>
-          <input type="password" name="password" id="password" />
-        </div>
+            <div>
+              <label for="last-name">Last Name</label>
+              <input type="text" name="lastName" id="last-name" value="<%= locals.data?.lastName %>" />
+            </div>
+          <% } %>
 
-        <% if (mode === "sign-up") { %>
           <div>
-            <label for="confirm-password">Confirm Password</label>
-            <input type="password" name="confirmPassword" id="confirm-password" />
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" value="<%= locals.data?.username %>" />
           </div>
-        <% } %>
 
-        <div>
-          <button><%= action %></button>
-        </div>
-      </form>
+          <div>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" />
+          </div>
 
-      <p>
-        <%= mode === "sign-up" ? "Already have an account?" : "Don't have an account?" %> 
-        <a href="/<%= mode === 'sign-up' ? 'sign-in' : 'sign-up' %>"><%= mode === "sign-up" ? "Sign in" : "Sign up" %></a>
-      </p>
-    </div>
+          <% if (mode === "sign-up") { %>
+            <div>
+              <label for="confirm-password">Confirm Password</label>
+              <input type="password" name="confirmPassword" id="confirm-password" />
+            </div>
+          <% } %>
+
+          <div>
+            <button><%= action %></button>
+          </div>
+        </form>
+        
+        <p>
+          <%= mode === "sign-up" ? "Already have an account?" : "Don't have an account?" %>
+          <a href="/<%= mode === 'sign-up' ? 'sign-in' : 'sign-up' %>"><%= mode === "sign-up" ? "Sign in" : "Sign up" %></a>
+        </p>
+      </div>
+    </main>
   </body>
 </html>

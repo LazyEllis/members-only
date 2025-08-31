@@ -11,9 +11,12 @@
   <title>Members Only | <%= action %></title>
 </head>
 <body>
-  <h1><%= action %></h1>
-  <div class="form-container">
-     <% if (locals.error) { %>
+  <%- include("partials/navbar") %>
+  <main>
+    <h1><%= action %></h1>
+
+    <div class="form-container">
+      <% if (locals.error) { %>
         <div class="alert">
           <h2>There was an error with your submission</h2>
           <ul class="error-list">
@@ -21,17 +24,18 @@
           </ul>
         </div>
       <% } %>
-  </div>
+    
+      <form action="/upgrade-role" method="post">
+        <div>
+          <label for="passcode">Passcode</label>
+          <input type="password" name="passcode" id="passcode">
+        </div>
 
-  <form action="/upgrade-role" method="post">
-    <div>
-      <label for="passcode">Passcode</label>
-      <input type="password" name="passcode" id="passcode">
+        <div>
+          <button><%= action %></button>
+        </div>
+      </form>
     </div>
-
-    <div>
-      <button><%= action %></button>
-    </div>
-  </form>
+  </main>
 </body>
 </html>

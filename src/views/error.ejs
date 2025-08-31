@@ -6,8 +6,11 @@
   <title>Members Only</title>
 </head>
 <body>
-  <h1><%= statusCode %></h1>
-  <p><%= message %></p>
-  <a href="/">Go back home</a>
+  <%- include("partials/navbar") %>
+  <main>
+    <h1><%= statusCode %></h1>
+    <p><%= message %></p>
+    <a href="/">Go back home</a>
+  </main>
 </body>
 </html>
