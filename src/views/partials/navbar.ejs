@@ -1,15 +1,44 @@
 <header>
   <nav>
-    <a href="/" class="brand">Members Only</a>
-    <ul>
-      <% if (user) { %>
-        <li><a href="/messages/send">Send Message</a></li>
-        <li><span><%= user.name %></span></li>
-        <li><a href="/sign-out">Sign out</a></li>
-      <% } else { %>
-        <li><a href="/sign-in">Sign in</a></li>
-        <li><a href="/sign-up">Sign up</a></li>
-      <% } %>
+    <div class="navbar">
+      <a href="/" class="brand">Members Only</a>
+      <ul class="nav-list">
+        <% if (user) { %>
+          <li><a href="/messages/send" class="button action">Send Message</a></li>
+          <li class="dropdown">
+            <button class="button dropdown-button"><%= user.name %></button>
+            <div class="dropdown-menu">
+              <div class="header">
+                <p class="small">Signed in as</p>
+                <p class="bold"><%= user.username %></p>
+              </div>
+              <div>
+                <a href="/sign-out">Sign out</a>
+              </div>
+            </div>
+          </li>
+        <% } else { %>
+          <li><a href="/sign-in" class="button">Sign in</a></li>
+          <li><a href="/sign-up" class="button action">Sign up</a></li>
+        <% } %>
+      </ul>
+      <button class="button mobile-menu-button" id="mobile-menu-button">
+        <span class="sr-only">Open navigation menu</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu-icon lucide-menu"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg>
+      </button>
+    </div>
+    <ul class="mobile-menu" id="mobile-menu">
+        <% if (user) { %>
+          <li><a href="/messages/send" class="button action">Send Message</a></li>
+          <li class="nav-item">
+            <p><%= user.name %></p>
+            <p class="small">@<%= user.username %></p>
+          </li>
+          <li><a href="/sign-out" class="button">Sign out</a></li>
+        <% } else { %>
+          <li><a href="/sign-in" class="button">Sign in</a></li>
+          <li><a href="/sign-up" class="button action">Sign up</a></li>
+        <% } %>
     </ul>
   </nav>
 </header>
