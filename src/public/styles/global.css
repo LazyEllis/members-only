@@ -16,6 +16,8 @@
   --color-form: #222237;
   --color-accent: #4654c0;
   --color-accent-hover: #3a48a3;
+  --color-danger: #d22d39;
+  --color-danger-hover: #a0222b;
 
   /* Border Radius */
   --radius-md: 6px;
@@ -109,12 +111,26 @@ header > nav {
     background-color: var(--color-nav-hover);
   }
 
+  &.small {
+    padding: 4px 12px;
+  }
+
   &.action {
     background-color: var(--color-accent);
     color: var(--color-white);
 
     &:hover {
       background-color: var(--color-accent-hover);
+    }
+  }
+
+  &.danger {
+    background-color: var(--color-danger);
+    color: var(--color-white);
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--color-danger-hover);
     }
   }
 }
@@ -204,5 +220,21 @@ main {
 
   @media (width >= 64rem) {
     padding: 32px;
+  }
+}
+
+.page-heading {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-bold);
+  color: var(--color-white);
+  margin-bottom: 8px;
+
+  @media (width >= 40rem) {
+    font-size: var(--text-3xl);
+    margin-bottom: 24px;
+  }
+
+  @media (width >= 64rem) {
+    margin-bottom: 32px;
   }
 }

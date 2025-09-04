@@ -1,0 +1,47 @@
+:root {
+  --color-member: #3db0ff;
+  --color-admin: #f0ad01;
+}
+
+.message {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+
+  &:not(:last-child) {
+    margin-bottom: 24px;
+  }
+
+  > div {
+    padding: 12px;
+
+    &:first-child {
+      background-color: var(--color-nav);
+    }
+  }
+}
+
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.message-author,
+.message-title {
+  color: var(--color-white);
+  font-weight: var(--font-medium);
+}
+
+.message-title {
+  font-size: var(--text-2xl);
+}
+
+.message-author {
+  &.member {
+    color: var(--color-member);
+  }
+
+  &.admin {
+    color: var(--color-admin);
+  }
+}
