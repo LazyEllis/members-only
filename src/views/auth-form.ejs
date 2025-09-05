@@ -8,11 +8,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Members Only | <%= action %></title>
-    <%- include("partials/styles") %>
+    <%- include("partials/styles", { style: "form" }) %>
   </head>
   <body>
     <%- include("partials/navbar") %>
-    <main>
+    <main class="auth">
       <h1><%= action %></h1>
 
       <div class="form-container">
@@ -49,11 +49,11 @@
           <% } %>
 
           <div>
-            <button><%= action %></button>
+            <button type="submit" class="button action"><%= action %></button>
           </div>
         </form>
         
-        <p>
+        <p class="alternate-message">
           <%= mode === "sign-up" ? "Already have an account?" : "Don't have an account?" %>
           <a href="/<%= mode === 'sign-up' ? 'sign-in' : 'sign-up' %>"><%= mode === "sign-up" ? "Sign in" : "Sign up" %></a>
         </p>

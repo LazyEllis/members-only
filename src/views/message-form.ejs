@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Members Only | Send Message</title>
-    <%- include("partials/styles") %>
+    <%- include("partials/styles", { style: "form" }) %>
   </head>
   <body>
     <%- include("partials/navbar") %>
@@ -26,7 +26,7 @@
           </div>
 
           <div>
-            <button type="submit">Send Message</button>
+            <button type="submit" class="button action">Send Message</button>
           </div>
         </form>
       </div>
