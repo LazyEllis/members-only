@@ -1,5 +1,5 @@
 {
-  "name": "express-template",
+  "name": "members-only",
   "type": "module",
   "version": "1.0.0",
   "description": "",
@@ -12,15 +12,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LazyEllis/express-template.git"
+    "url": "git+https://github.com/LazyEllis/members-only.git"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/LazyEllis/express-template/issues"
+    "url": "https://github.com/LazyEllis/members-only/issues"
   },
-  "homepage": "https://github.com/LazyEllis/express-template#readme",
+  "homepage": "https://github.com/LazyEllis/members-only#readme",
   "dependencies": {
     "bcryptjs": "^3.0.2",
     "connect-pg-simple": "^10.0.0",
