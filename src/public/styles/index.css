@@ -3,6 +3,36 @@
   --color-admin: #f0ad01;
 }
 
+main:has(.empty-feed) {
+  min-height: calc(100% - 64px);
+  display: flex;
+  flex-direction: column;
+}
+
+.empty-feed {
+  flex-grow: 1;
+  text-align: center;
+  align-self: center;
+  align-content: center;
+
+  h2 {
+    color: var(--color-white);
+    font-weight: var(--font-semibold);
+    margin-top: 8px;
+    margin-bottom: 4px;
+  }
+
+  p {
+    margin-bottom: 24px;
+  }
+}
+
+.empty-icon {
+  height: 48px;
+  width: 48px;
+  margin-inline: auto;
+}
+
 .message {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);

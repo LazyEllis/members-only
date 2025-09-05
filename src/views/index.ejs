@@ -23,11 +23,9 @@
       <h1 class="page-heading">Messages</h1>
       <% if (messages.length === 0) { %>
         <div class="empty-feed">
-          <h2>No messages</h2>
+          <svg class="empty-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle-plus-icon lucide-message-circle-plus"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>          <h2>No messages</h2>
           <p>Start the discussion with a new message</p>
-          <div>
-            <a href="/messages/send">Send Message</a>
-          </div>
+          <a href="/messages/send" class="button action">Send Message</a>
         </div>
       <% } else { %>
         <div class="feed">
