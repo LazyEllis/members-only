@@ -34,7 +34,7 @@
               <div class="message-header">
                 <div>
                   <div class="message-author<%= getRole(message.role) %>"><%= isMember || user?.id === message.user_id ? message.author : '*****' %></div>
-                  <div class="small">@<%= isMember || user?.id === message.user_id ? message.username : '*****' %></div>
+                  <div class="small">@<%= isMember || user?.id === message.user_id ? `${message.username} • ${isThisSecond(message.created_at) ? "now" : formatDistanceToNowStrict(message.created_at, { addSuffix: true })}` : '*****' %></div>
                 </div>
                 <% if (isAdmin) { %>
                   <form action="/messages/<%= message.id %>/delete" method="post">

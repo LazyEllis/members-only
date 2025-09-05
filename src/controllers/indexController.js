@@ -1,11 +1,12 @@
 import bcrypt from "bcryptjs";
+import { formatDistanceToNowStrict, isThisSecond } from "date-fns";
 import { findMessages } from "../models/messageModel.js";
 import { createUser, updateUserRole } from "../models/userModel.js";
 import { findRoleByName } from "../models/roleModel.js";
 
 export const renderHomePage = async (req, res) => {
   const messages = await findMessages();
-  res.render("index", { messages });
+  res.render("index", { messages, formatDistanceToNowStrict, isThisSecond });
 };
 
 export const renderSignUpForm = (req, res) => {
