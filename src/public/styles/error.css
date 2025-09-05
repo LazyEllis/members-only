@@ -1,0 +1,35 @@
+:root {
+  --text-5xl: 3rem;
+  --text-7xl: 4.5rem;
+  --color-accent-alt: #7c86ff;
+}
+
+main {
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.error {
+  text-align: center;
+
+  .code,
+  .message {
+    font-weight: var(--font-semibold);
+  }
+
+  .code {
+    color: var(--color-accent-alt);
+  }
+
+  .message {
+    font-size: var(--text-5xl);
+    color: var(--color-white);
+    margin-top: 16px;
+    margin-bottom: 40px;
+
+    @media (width >= 40rem) {
+      font-size: var(--text-7xl);
+    }
+  }
+}
