@@ -4,8 +4,8 @@ import session from "express-session";
 import passport from "passport";
 import connectPgSimple from "connect-pg-simple";
 import "dotenv/config";
-import "./config/passport.js";
-import pool from "./config/pool.js";
+import "./lib/passport.js";
+import pool from "./lib/pool.js";
 import indexRouter from "./routes/indexRouter.js";
 import messageRouter from "./routes/messageRouter.js";
 

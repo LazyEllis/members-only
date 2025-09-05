@@ -1,4 +1,4 @@
-import pool from "../config/pool.js";
+import pool from "../lib/pool.js";
 
 export const createMessage = async ({ title, content, user }) => {
   await pool.query(
